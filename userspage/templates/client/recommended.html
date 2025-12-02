@@ -1,0 +1,40 @@
+{% extends "client/layouts.html" %}
+{% load static %}
+
+{% block title %}
+<title>Online Food || Recommended</title>
+{% endblock %}
+
+{% block main_content %}
+
+
+
+
+<div class="container-fluid">
+	<h2 class="text-white text-center p-2 fs-1" >
+        Recommended Food for You
+	</h2>
+	<div class="row row-cols-1 row-cols-md-4 g-3">
+		{% if recommended_foods %}
+        {% for food in recommended_foods %}
+		<div class="col " data-aos="zoom-out-up">
+			<div class="card  productss">
+				<a href="/fooddetails/{{food.id}}"><img src="{{ food.Food_image.url }}" alt="{{ food.food_name }}" width="100" style="height: 200px; width: 220px;" class="ms-3"></a>
+				
+				<div class="card-body">
+					<h6 class="card-title">{{food.food_name}}</h6>
+					<h6 class="text-muted">Rs.{{food.food_price}}</h6>
+                    <a href="/fooddetails/{{food.id}}" class="btn btn-block btn-primary px-5 ms-3">View Details </a>
+
+				</div>
+			</div>
+		</div>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p class="text-white">No recommended food available based on your past orders.</p>
+    {% endif %}
+	</div>
+</div>
+
+{% endblock %}
